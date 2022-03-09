@@ -4,6 +4,7 @@ import { RoleService, UserService } from '../services';
 import { UserController } from '../controllers';
 import { SqlEntityRepository } from '@mikro-orm/postgresql';
 import { userBodyRequirements, queryRequirements, passwordValidator } from '../validators';
+import { Authorization } from '../middleware';
 
 const router = express.Router();
 
@@ -15,15 +16,25 @@ const UserRoute = (DbConnection: CustomDatabaseConnector) => {
 
   const userController = new UserController(userService, roleService);
 
-  router.get('/', userController.getAll);
+  router.get('/', Authorization, userController.getAll);
 
-  router.get('/find', queryRequirements, userController.getOne);
+  router.get('/find', Authorization, queryRequirements, userController.getOne);
 
-  router.post('/', [...userBodyRequirements, ...passwordValidator], userController.create);
+  router.post(
+    '/',
+    Authorization,
+    [...userBodyRequirements, ...passwordValidator],
+    userController.create,
+  );
 
-  router.put('/:id', [...queryRequirements, ...userBodyRequirements], userController.update);
+  router.put(
+    '/:id',
+    Authorization,
+    [...queryRequirements, ...userBodyRequirements],
+    userController.update,
+  );
 
-  router.delete('/:id', queryRequirements, userController.delete);
+  router.delete('/:id', Authorization, queryRequirements, userController.delete);
 
   return router;
 };

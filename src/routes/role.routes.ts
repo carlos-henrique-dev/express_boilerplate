@@ -4,6 +4,7 @@ import { RoleService } from '../services';
 import { RoleController } from '../controllers';
 import { SqlEntityRepository } from '@mikro-orm/postgresql';
 import { queryRequirements, roleBodyRequirements } from '../validators';
+import { Authorization } from '../middleware';
 
 const router = express.Router();
 
@@ -14,15 +15,20 @@ const RoleRoute = (DbConnection: CustomDatabaseConnector) => {
 
   const roleController = new RoleController(userService);
 
-  router.get('/', roleController.getAll);
+  router.get('/', Authorization, roleController.getAll);
 
-  router.get('/find', queryRequirements, roleController.getOne);
+  router.get('/find',Authorization, queryRequirements, roleController.getOne);
 
-  router.post('/', roleBodyRequirements, roleController.create);
+  router.post('/', Authorization, roleBodyRequirements, roleController.create);
 
-  router.put('/:id', [...queryRequirements, ...roleBodyRequirements], roleController.update);
+  router.put(
+    '/:id',
+    Authorization,
+    [...queryRequirements, ...roleBodyRequirements],
+    roleController.update,
+  );
 
-  router.delete('/:id', queryRequirements, roleController.delete);
+  router.delete('/:id', Authorization, queryRequirements, roleController.delete);
 
   return router;
 };

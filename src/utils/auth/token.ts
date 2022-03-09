@@ -2,7 +2,7 @@ import jsonwebtoken, { JwtPayload } from 'jsonwebtoken';
 
 export type Token = string;
 
-export type DecodedToken = string | JwtPayload | null;
+export type DecodedToken = JwtPayload | null;
 
 const {
   JWT_TOKEN_SECRET,
@@ -43,6 +43,6 @@ export class TokenService {
   }
 
   decode(token: Token = ''): DecodedToken {
-    return jsonwebtoken.decode(token);
+    return jsonwebtoken.decode(token) as JwtPayload | null;
   }
 }
