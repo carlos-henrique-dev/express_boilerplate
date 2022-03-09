@@ -29,6 +29,11 @@ export class UserController extends BaseController {
         role_id: roleId,
       };
 
+      const userExists = await this.service.getOne({ field: 'email', value: email });
+      if (userExists) {
+        throw new Error('There is already an user with this email');
+      }
+
       const getUserRole = await this.roleService.getOne({ field: 'id', value: roleId });
 
       if (!getUserRole) {
@@ -46,7 +51,7 @@ export class UserController extends BaseController {
 
       res.status(500).json({
         success: false,
-        message: 'Unable to create User',
+        message: `Unable to create User. ${error.message}`,
       });
     }
   };

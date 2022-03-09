@@ -27,7 +27,7 @@ export class BaseService {
     filter: DefaultItemFilterQuery = DEFAULT_FILTER,
     relationships?: string[] | [],
   ) => {
-    return this.connection.findOneOrFail(
+    return this.connection.findOne(
       { [filter.field]: filter.value, deleted: false },
       // @ts-ignore
       { populate: relationships },

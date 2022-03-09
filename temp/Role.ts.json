@@ -41,7 +41,11 @@
     ],
     "primaryKeys": [],
     "filters": {},
-    "hooks": {},
+    "hooks": {
+      "beforeCreate": [
+        "hashPassword"
+      ]
+    },
     "indexes": [],
     "uniques": [],
     "checks": [],
@@ -61,6 +65,6 @@
     "collection": "role"
   },
   "origin": "./src/models/role.model.ts",
-  "hash": "305dd19f660184f8ceab0eeb514346e9",
+  "hash": "12a6b2d24edf66124b305f8048f6d02f",
   "version": "5.0.5"
 }

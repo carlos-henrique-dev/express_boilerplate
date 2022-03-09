@@ -3,6 +3,7 @@ import { BaseController } from './base.controller';
 import { validationResult } from 'express-validator';
 import { parsePagination } from '../utils/services';
 import { CacheService } from '../services/cache';
+import slugify from 'slug';
 
 export class RoleController extends BaseController {
   create = async (req: Request, res: Response) => {
@@ -21,6 +22,12 @@ export class RoleController extends BaseController {
         name,
         slug,
       };
+
+      const newSlug = slugify(slug, '_');
+      const roleExists = await this.service.getOne({ field: 'slug', value: newSlug });
+      if (roleExists) {
+        throw new Error('There is already a role with this slug');
+      }
 
       const role = await this.service.create(data);
 
