@@ -4,7 +4,6 @@ import { TokenService } from '../utils';
 export const Authorization =
   (requiredRoles = ['admin']) =>
   async (req: Request, res: Response, next: NextFunction) => {
-    console.log('req', requiredRoles);
     try {
       const token = req?.headers?.authorization || '';
 
@@ -15,7 +14,6 @@ export const Authorization =
       const splitToken = token.split(' ')[1];
 
       const decodedToken = new TokenService().decode(splitToken);
-      console.log('dec', decodedToken);
 
       if (!decodedToken?.role) {
         throw new Error('Invalid Token');

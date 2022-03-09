@@ -24,6 +24,7 @@ services:
       JWT_REFRESH_TOKEN_SECRET: "senha_super_refresh_token_43f@edfw"
       JWT_TOKEN_EXPIRES_IN: "1d"
       JWT_REFRESH_TOKEN_EXPIRES_IN: "1d"
+      REDS_PORT: 6379
     links:
       - sp_postgres:database
       - sp_redis:redis

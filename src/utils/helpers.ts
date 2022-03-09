@@ -13,7 +13,6 @@ export const FileLoader = async () => {
   const required: any = [];
 
   for (const item of files) {
-    console.log(item);
     if (item.includes('routes.ts')) {
       const itemName = item.split('.');
       const { default: itemRoute } = await import(`./${item}`);
