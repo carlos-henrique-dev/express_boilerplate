@@ -1,0 +1,53 @@
+version: '3.7'
+
+services:
+  api:
+    container_name: sp_api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/usr/app
+    expose:
+      - '4000'
+    ports:
+      - '4000:4000'
+    environment:
+      APP_ENV: dev
+      PORT: 3000
+      DB_URL: sp_postgres:5432
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+    command: yarn dev
+
+  postgres:
+    container_name: sp_postgres
+    image: postgres:11.1
+    volumes:
+      - ./.data/postgresql:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: sp_test
+    networks:
+      main:
+        aliases:
+          - sp_postgres
+
+  redis:
+    container_name: sp_redis
+    image: redis:6.2-alpine
+    ports:
+      - '6379:6379'
+    volumes:
+      - './.data/redis:/data'
+    networks:
+      main:
+        aliases:
+          - redis
+    restart: always
+
+networks:
+  main:
