@@ -9,13 +9,15 @@ services:
     volumes:
       - .:/usr/app
     expose:
-      - '4000'
+      - '3000'
     ports:
-      - '4000:4000'
+      - '3000:3000'
     environment:
       APP_ENV: dev
       PORT: 3000
-      DB_URL: sp_postgres:5432
+      DB_HOST: sp_postgres
+      DB_PORT: 5432
+      DB_NAME: sp_test
       DB_USER: postgres
       DB_PASSWORD: postgres
     command: yarn dev

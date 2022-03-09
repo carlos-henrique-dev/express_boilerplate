@@ -1,0 +1,60 @@
+{
+  "data": {
+    "propertyOrder": {},
+    "properties": {
+      "name": {
+        "name": "name",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      "email": {
+        "name": "email",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      }
+    },
+    "props": [
+      {
+        "name": "name",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      {
+        "name": "email",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      }
+    ],
+    "primaryKeys": [],
+    "filters": {},
+    "hooks": {},
+    "indexes": [],
+    "uniques": [],
+    "checks": [],
+    "concurrencyCheckKeys": {},
+    "className": "User",
+    "path": "./src/models/user.model.ts",
+    "name": "User",
+    "abstract": false,
+    "constructorParams": [
+      "name",
+      "email"
+    ],
+    "toJsonParams": [],
+    "extends": "BaseModel",
+    "useCache": true,
+    "relations": [],
+    "collection": "user"
+  },
+  "origin": "./src/models/user.model.ts",
+  "hash": "d0eec1105dafcb65245df4279a68db2e",
+  "version": "5.0.5"
+}

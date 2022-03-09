@@ -1,0 +1,109 @@
+{
+  "data": {
+    "propertyOrder": {},
+    "properties": {
+      "id": {
+        "name": "id",
+        "reference": "scalar",
+        "primary": true,
+        "type": "number"
+      },
+      "createdAt": {
+        "name": "createdAt",
+        "reference": "scalar",
+        "defaultRaw": "now()",
+        "getter": false,
+        "setter": false,
+        "type": "Date"
+      },
+      "updatedAt": {
+        "name": "updatedAt",
+        "reference": "scalar",
+        "nullable": true,
+        "default": null,
+        "getter": false,
+        "setter": false,
+        "type": "object"
+      },
+      "deletedAt": {
+        "name": "deletedAt",
+        "reference": "scalar",
+        "nullable": true,
+        "default": null,
+        "getter": false,
+        "setter": false,
+        "type": "object"
+      },
+      "deleted": {
+        "name": "deleted",
+        "reference": "scalar",
+        "default": false,
+        "getter": false,
+        "setter": false,
+        "type": "boolean"
+      }
+    },
+    "props": [
+      {
+        "name": "id",
+        "reference": "scalar",
+        "primary": true,
+        "type": "number"
+      },
+      {
+        "name": "createdAt",
+        "reference": "scalar",
+        "defaultRaw": "now()",
+        "getter": false,
+        "setter": false,
+        "type": "Date"
+      },
+      {
+        "name": "updatedAt",
+        "reference": "scalar",
+        "nullable": true,
+        "default": null,
+        "getter": false,
+        "setter": false,
+        "type": "object"
+      },
+      {
+        "name": "deletedAt",
+        "reference": "scalar",
+        "nullable": true,
+        "default": null,
+        "getter": false,
+        "setter": false,
+        "type": "object"
+      },
+      {
+        "name": "deleted",
+        "reference": "scalar",
+        "default": false,
+        "getter": false,
+        "setter": false,
+        "type": "boolean"
+      }
+    ],
+    "primaryKeys": [
+      "id"
+    ],
+    "filters": {},
+    "hooks": {},
+    "indexes": [],
+    "uniques": [],
+    "checks": [],
+    "concurrencyCheckKeys": {},
+    "className": "BaseModel",
+    "path": "./src/models/base.model.ts",
+    "abstract": true,
+    "constructorParams": [],
+    "toJsonParams": [],
+    "useCache": true,
+    "compositePK": false,
+    "relations": []
+  },
+  "origin": "./src/models/base.model.ts",
+  "hash": "38946fc4c6017d8e6a3f99573153d7b3",
+  "version": "5.0.5"
+}
