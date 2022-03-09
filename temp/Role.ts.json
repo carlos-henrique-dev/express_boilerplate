@@ -5,6 +5,16 @@
       "name": {
         "name": "name",
         "reference": "scalar",
+        "nullable": false,
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      "slug": {
+        "name": "slug",
+        "reference": "scalar",
+        "unique": true,
+        "nullable": false,
         "getter": false,
         "setter": false,
         "type": "string"
@@ -14,6 +24,16 @@
       {
         "name": "name",
         "reference": "scalar",
+        "nullable": false,
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      {
+        "name": "slug",
+        "reference": "scalar",
+        "unique": true,
+        "nullable": false,
         "getter": false,
         "setter": false,
         "type": "string"
@@ -31,7 +51,8 @@
     "name": "Role",
     "abstract": false,
     "constructorParams": [
-      "name"
+      "name",
+      "slug"
     ],
     "toJsonParams": [],
     "extends": "BaseModel",
@@ -40,6 +61,6 @@
     "collection": "role"
   },
   "origin": "./src/models/role.model.ts",
-  "hash": "cfb7df6a64f1cba54104d7261a034c2a",
+  "hash": "305dd19f660184f8ceab0eeb514346e9",
   "version": "5.0.5"
 }

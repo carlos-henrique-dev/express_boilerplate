@@ -67,8 +67,8 @@
           "nullable": false,
           "mappedType": "string"
         },
-        "email": {
-          "name": "email",
+        "slug": {
+          "name": "slug",
           "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
@@ -77,11 +77,20 @@
           "mappedType": "string"
         }
       },
-      "name": "user",
+      "name": "role",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "user_pkey",
+          "columnNames": [
+            "slug"
+          ],
+          "composite": false,
+          "keyName": "role_slug_unique",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "role_pkey",
           "columnNames": [
             "id"
           ],
@@ -155,13 +164,49 @@
           "primary": false,
           "nullable": false,
           "mappedType": "string"
+        },
+        "email": {
+          "name": "email",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "password": {
+          "name": "password",
+          "type": "varchar(255)",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "string"
+        },
+        "role_id": {
+          "name": "role_id",
+          "type": "int",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
         }
       },
-      "name": "role",
+      "name": "user",
       "schema": "public",
       "indexes": [
         {
-          "keyName": "role_pkey",
+          "columnNames": [
+            "email"
+          ],
+          "composite": false,
+          "keyName": "user_email_unique",
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "user_pkey",
           "columnNames": [
             "id"
           ],
@@ -171,7 +216,20 @@
         }
       ],
       "checks": [],
-      "foreignKeys": {}
+      "foreignKeys": {
+        "user_role_id_foreign": {
+          "constraintName": "user_role_id_foreign",
+          "columnNames": [
+            "role_id"
+          ],
+          "localTableName": "public.user",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "public.role",
+          "updateRule": "cascade"
+        }
+      }
     }
   ]
 }

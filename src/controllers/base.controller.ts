@@ -33,8 +33,10 @@ const parseId = (params: Request['params']) => {
 
 export class BaseController {
   service = {} as BaseService;
+  relationships: string[] | [] = [];
 
-  constructor(service: any) {
+  constructor(service: any, relationships: string[] | [] = []) {
+    this.relationships = relationships;
     this.service = service;
   }
 
@@ -42,7 +44,7 @@ export class BaseController {
     const pagination = parsePagination(req.query);
 
     try {
-      const result = await this.service.getMany(pagination);
+      const result = await this.service.getMany(pagination, this.relationships);
 
       res.status(200).json({ success: true, ...result });
     } catch (error) {
@@ -56,11 +58,11 @@ export class BaseController {
     const filter = parseFilter(req.query);
 
     try {
-      const result = await this.service.getOne(filter);
+      const result = await this.service.getOne(filter, this.relationships);
 
       res.status(200).json({ success: true, data: result });
     } catch (error) {
-      console.log('getAll Error', error);
+      console.log('getOne Error', error);
 
       res.status(500).json({ message: 'Unable to get the data', success: false });
     }

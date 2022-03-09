@@ -10,10 +10,11 @@ export class BaseService {
     this.connection = connection;
   }
 
-  getMany = async (pagination = DEFAULT_PAGINATION) => {
+  getMany = async (pagination = DEFAULT_PAGINATION, relationships?: string[] | []) => {
     const [result, count] = await this.connection.findAndCount(
       { deleted: false },
-      { ...pagination },
+      // @ts-ignore
+      { ...pagination, populate: relationships },
     );
 
     return {
@@ -22,8 +23,15 @@ export class BaseService {
     };
   };
 
-  getOne = async (filter: DefaultItemFilterQuery = DEFAULT_FILTER) => {
-    return this.connection.findOneOrFail({ [filter.field]: filter.value, deleted: false });
+  getOne = async (
+    filter: DefaultItemFilterQuery = DEFAULT_FILTER,
+    relationships?: string[] | [],
+  ) => {
+    return this.connection.findOneOrFail(
+      { [filter.field]: filter.value, deleted: false },
+      // @ts-ignore
+      { populate: relationships },
+    );
   };
 
   create = async (data: any) => {

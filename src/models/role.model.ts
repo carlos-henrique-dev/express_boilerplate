@@ -3,12 +3,16 @@ import { BaseModel } from './base.model';
 
 @Entity()
 export class Role extends BaseModel {
-  @Property({})
+  @Property({ nullable: false })
   name!: string;
 
-  constructor(name: string) {
+  @Property({ unique: true, nullable: false })
+  slug!: string;
+
+  constructor(name: string, slug: string) {
     super();
 
     this.name = name;
+    this.slug = slug;
   }
 }

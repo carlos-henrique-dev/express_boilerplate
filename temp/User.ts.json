@@ -5,6 +5,7 @@
       "name": {
         "name": "name",
         "reference": "scalar",
+        "nullable": false,
         "getter": false,
         "setter": false,
         "type": "string"
@@ -12,15 +13,35 @@
       "email": {
         "name": "email",
         "reference": "scalar",
+        "nullable": false,
+        "unique": true,
         "getter": false,
         "setter": false,
         "type": "string"
+      },
+      "password": {
+        "name": "password",
+        "reference": "scalar",
+        "nullable": false,
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      "role": {
+        "name": "role",
+        "reference": "m:1",
+        "cascade": [
+          "persist"
+        ],
+        "nullable": false,
+        "type": "Role"
       }
     },
     "props": [
       {
         "name": "name",
         "reference": "scalar",
+        "nullable": false,
         "getter": false,
         "setter": false,
         "type": "string"
@@ -28,14 +49,37 @@
       {
         "name": "email",
         "reference": "scalar",
+        "nullable": false,
+        "unique": true,
         "getter": false,
         "setter": false,
         "type": "string"
+      },
+      {
+        "name": "password",
+        "reference": "scalar",
+        "nullable": false,
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      },
+      {
+        "name": "role",
+        "reference": "m:1",
+        "cascade": [
+          "persist"
+        ],
+        "nullable": false,
+        "type": "Role"
       }
     ],
     "primaryKeys": [],
     "filters": {},
-    "hooks": {},
+    "hooks": {
+      "beforeCreate": [
+        "hashPassword"
+      ]
+    },
     "indexes": [],
     "uniques": [],
     "checks": [],
@@ -51,10 +95,20 @@
     "toJsonParams": [],
     "extends": "BaseModel",
     "useCache": true,
-    "relations": [],
+    "relations": [
+      {
+        "name": "role",
+        "reference": "m:1",
+        "cascade": [
+          "persist"
+        ],
+        "nullable": false,
+        "type": "Role"
+      }
+    ],
     "collection": "user"
   },
   "origin": "./src/models/user.model.ts",
-  "hash": "d0eec1105dafcb65245df4279a68db2e",
+  "hash": "31c5e56b26a425652e879310a3adb83c",
   "version": "5.0.5"
 }

@@ -20,6 +20,10 @@ services:
       DB_NAME: sp_test
       DB_USER: postgres
       DB_PASSWORD: postgres
+      JWT_TOKEN_SECRET: "senha_super_secreta_para_token_abcd!@a17"
+      JWT_REFRESH_TOKEN_SECRET: "senha_super_refresh_token_43f@edfw"
+      JWT_TOKEN_EXPIRES_IN: "1d"
+      JWT_REFRESH_TOKEN_EXPIRES_IN: "1d"
     links:
       - sp_postgres:database
       - sp_redis:redis

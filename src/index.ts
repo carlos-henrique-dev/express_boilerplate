@@ -1,11 +1,11 @@
 import 'dotenv/config';
 import 'reflect-metadata';
 
-import express, { NextFunction, Request, Response } from 'express';
+import express, { NextFunction } from 'express';
 import logger from 'morgan';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import { UserRouter } from './routes';
+import Routes from './routes';
 import { initializeORM } from './configs/database/setupDatabase';
 import { RequestContext } from '@mikro-orm/core';
 
@@ -37,7 +37,11 @@ const { PORT = 3000 } = process.env;
 
   /* DEFINING ROUTES */
 
-  app.use('/user', UserRouter(Database));
+  for (const item of Routes) {
+    if (item) {
+      app.use(item.name, item.route(Database));
+    }
+  }
 
   app.listen(PORT, () => console.log(`Server started at port: ${PORT} 🚀🚀`));
 })();

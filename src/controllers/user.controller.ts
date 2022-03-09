@@ -1,23 +1,43 @@
 import { Request, Response } from 'express';
 import { BaseController } from './base.controller';
+import { validationResult } from 'express-validator';
+import { BaseService } from 'services/base.service';
 
 export class UserController extends BaseController {
+  roleService = {} as BaseService;
+
+  constructor(userService: any, roleService: any) {
+    super(userService, ['role']);
+
+    this.roleService = roleService;
+  }
+
   create = async (req: Request, res: Response) => {
-    const { name, email } = req.body;
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { name, email, password, roleId } = req.body;
 
     try {
-      if (!name || !email) {
-        throw new Error(
-          'Required fields missing. Please check if you are sending the fields "name" and "email"',
-        );
-      }
-
       const data = {
         name,
         email,
+        password,
+        role_id: roleId,
       };
+      //  const [token, refreshToken] = context.tokenService.generateTokens({ id, role: slug });
+      //   const [newToken, newRefreshToken] = context.tokenService.generateTokens({ id, role: slug })
 
-      const user = await this.service.create(data);
+      const getUserRole = await this.roleService.getOne({ field: 'id', value: roleId });
+
+      if (!getUserRole) {
+        throw new Error('Unable to find a role with the provided Id');
+      }
+
+      const user = await this.service.create({ ...data, role: getUserRole });
 
       res.status(201).json({
         success: true,
@@ -28,7 +48,7 @@ export class UserController extends BaseController {
 
       res.status(500).json({
         success: false,
-        message: error.message,
+        message: 'Unable to create User',
       });
     }
   };
@@ -38,16 +58,6 @@ export class UserController extends BaseController {
     const { name, email } = req.body;
 
     try {
-      if (!id) {
-        throw new Error('You need to provide the ID of the entity to update');
-      }
-
-      if (!name || !email) {
-        throw new Error(
-          'Required fields missing. Please check if you are sending the fields "name" and "email"',
-        );
-      }
-
       const findUser = await this.service.getOne({ field: 'id', value: id });
 
       if (!findUser) {
