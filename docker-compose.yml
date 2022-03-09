@@ -20,7 +20,14 @@ services:
       DB_NAME: sp_test
       DB_USER: postgres
       DB_PASSWORD: postgres
+    links:
+      - sp_postgres:database
+      - sp_redis:redis
     command: yarn dev
+    networks:
+      main:
+        aliases:
+          - sp_api
 
   postgres:
     container_name: sp_postgres
@@ -48,7 +55,7 @@ services:
     networks:
       main:
         aliases:
-          - redis
+          - sp_redis
     restart: always
 
 networks:

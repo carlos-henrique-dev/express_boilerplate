@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "NODE_PATH=./build node build/index.js",
+		"start": "NODE_PATH=./build node build/src/index.js",
 		"build": "tsc -p .",
 		"dev": "nodemon src/index.ts",
 		"test": "echo \"Error: no test specified\" && exit 1",
@@ -38,6 +38,7 @@
 		"@types/node": "^17.0.21",
 		"@typescript-eslint/eslint-plugin": "^5.14.0",
 		"@typescript-eslint/parser": "^5.14.0",
+		"add": "^2.0.6",
 		"eslint": "^8.10.0",
 		"eslint-config-airbnb-base": "^15.0.0",
 		"eslint-config-airbnb-typescript": "^16.1.0",
@@ -52,8 +53,8 @@
 	"mikro-orm": {
 		"useTsNode": true,
 		"configPaths": [
-			"./src/configs/database/mikro-orm.config.ts",
-			"./build/src/configs/database/mikro-orm.config.js"
+			"src/configs/database/mikro-orm.config.ts",
+			"build/src/configs/database/mikro-orm.config.js"
 		]
 	}
 }

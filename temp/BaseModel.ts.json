@@ -21,18 +21,18 @@
         "reference": "scalar",
         "nullable": true,
         "default": null,
+        "type": "Date",
         "getter": false,
-        "setter": false,
-        "type": "object"
+        "setter": false
       },
       "deletedAt": {
         "name": "deletedAt",
         "reference": "scalar",
         "nullable": true,
         "default": null,
+        "type": "Date",
         "getter": false,
-        "setter": false,
-        "type": "object"
+        "setter": false
       },
       "deleted": {
         "name": "deleted",
@@ -63,18 +63,18 @@
         "reference": "scalar",
         "nullable": true,
         "default": null,
+        "type": "Date",
         "getter": false,
-        "setter": false,
-        "type": "object"
+        "setter": false
       },
       {
         "name": "deletedAt",
         "reference": "scalar",
         "nullable": true,
         "default": null,
+        "type": "Date",
         "getter": false,
-        "setter": false,
-        "type": "object"
+        "setter": false
       },
       {
         "name": "deleted",
@@ -104,6 +104,6 @@
     "relations": []
   },
   "origin": "./src/models/base.model.ts",
-  "hash": "38946fc4c6017d8e6a3f99573153d7b3",
+  "hash": "27c8cd4c87a66471b97306d4829fbdd0",
   "version": "5.0.5"
 }

@@ -1,1 +1,3 @@
-export * as UserRouter from './user.routes';
+import UserRouter from './user.routes';
+
+export { UserRouter };

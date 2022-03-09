@@ -7,10 +7,10 @@ export abstract class BaseModel {
   @Property({ defaultRaw: 'now()' })
   createdAt: Date = new Date();
 
-  @Property({ onUpdate: () => new Date(), nullable: true, default: null })
+  @Property({ onUpdate: () => new Date(), nullable: true, default: null, type: Date })
   updatedAt: Date | null = null;
 
-  @Property({ nullable: true, default: null })
+  @Property({ nullable: true, default: null, type: Date })
   deletedAt: Date | null = null;
 
   @Property({ default: false })

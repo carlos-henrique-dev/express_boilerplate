@@ -1,0 +1,45 @@
+{
+  "data": {
+    "propertyOrder": {},
+    "properties": {
+      "name": {
+        "name": "name",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      }
+    },
+    "props": [
+      {
+        "name": "name",
+        "reference": "scalar",
+        "getter": false,
+        "setter": false,
+        "type": "string"
+      }
+    ],
+    "primaryKeys": [],
+    "filters": {},
+    "hooks": {},
+    "indexes": [],
+    "uniques": [],
+    "checks": [],
+    "concurrencyCheckKeys": {},
+    "className": "Role",
+    "path": "./src/models/role.model.ts",
+    "name": "Role",
+    "abstract": false,
+    "constructorParams": [
+      "name"
+    ],
+    "toJsonParams": [],
+    "extends": "BaseModel",
+    "useCache": true,
+    "relations": [],
+    "collection": "role"
+  },
+  "origin": "./src/models/role.model.ts",
+  "hash": "cfb7df6a64f1cba54104d7261a034c2a",
+  "version": "5.0.5"
+}
