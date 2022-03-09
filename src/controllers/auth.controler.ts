@@ -23,10 +23,7 @@ export class AuthController extends BaseController {
     const { email, password } = req.body;
 
     try {
-      //  const [token, refreshToken] = context.tokenService.generateTokens({ id, role: slug });
-      //   const [newToken, newRefreshToken] = context.tokenService.generateTokens({ id, role: slug })
-
-      const getUser = await this.service.getOne({ field: 'email', value: email });
+      const getUser = await this.service.getOne({ field: 'email', value: email }, ['role']);
 
       if (!getUser) {
         throw new Error('User not found. Email or password invalid');
@@ -38,7 +35,11 @@ export class AuthController extends BaseController {
         throw new Error('Invalid credentials');
       }
 
-      const [token, refreshToken] = new TokenService().generateTokens({ id, role: role.slug });
+      const payload = {
+        user: { id: getUser.id, name: getUser.name },
+        role: { id: getUser.role.id, slug: getUser.role.slug },
+      };
+      const [token, refreshToken] = new TokenService().generateTokens(payload);
 
       res.status(201).json({
         success: true,

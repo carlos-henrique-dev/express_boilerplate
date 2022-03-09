@@ -1,1 +1,2 @@
-export * from './auth.midleware';
+export * from './authentication.middleware';
+export * from './authorization.middlware';

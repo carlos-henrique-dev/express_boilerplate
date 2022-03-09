@@ -28,8 +28,6 @@ export class UserController extends BaseController {
         password,
         role_id: roleId,
       };
-      //  const [token, refreshToken] = context.tokenService.generateTokens({ id, role: slug });
-      //   const [newToken, newRefreshToken] = context.tokenService.generateTokens({ id, role: slug })
 
       const getUserRole = await this.roleService.getOne({ field: 'id', value: roleId });
 

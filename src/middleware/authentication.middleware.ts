@@ -1,7 +1,7 @@
 import { Request, NextFunction, Response } from 'express';
 import { TokenService } from '../utils';
 
-export const Authorization = async (req: Request, res: Response, next: NextFunction) => {
+export const Authentication = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = req?.headers?.authorization || '';
 
